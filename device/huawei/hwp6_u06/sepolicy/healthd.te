@@ -1,3 +1,0 @@
-allow healthd rootfs:file entrypoint;
-
-
