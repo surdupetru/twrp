@@ -32,11 +32,14 @@ on init
     write /sys/module/block2mtd/parameters/block2mtd /dev/block/mmcblk0p3
     mount tmpfs tmpfs /tmp
     # change nve device visit permission
+
     wait /dev/nve0
-    chmod 0777 /dev/nve0
+    chown root system /dev/nve0
+    chmod 0770 /dev/nve0
     chmod 0664 /sys/module/usbcore/parameters/autosuspend
     chown radio radio /sys/module/usbcore/parameters/autosuspend
     write /sys/module/usbcore/parameters/autosuspend 2000
+    start leds
 
 on fs
 
@@ -52,6 +55,9 @@ on fs
     chmod 0660 /sys/bus/i2c/devices/1-006b/enable_charger
     chown system system /sys/class/leds/synaptics-backlight-tk/brightness
     chmod 0660 /sys/class/leds/synaptics-backlight-tk/brightness
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_block_freq 1500000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_ddr_block_freq 450000
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
@@ -79,6 +85,9 @@ on property:sys.storage.ums_enabled=0
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/functions adb
     write /sys/class/android_usb/android0/enable ${service.adb.root}
+
+service leds /sbin/leds
+    disabled
 
 service ueventd /sbin/ueventd
     critical

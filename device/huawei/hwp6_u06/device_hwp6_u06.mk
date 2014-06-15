@@ -28,7 +28,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/ueventd.k3v2oem1.rc:recovery/root/ueventd.k3v2oem1.rc \
-    $(LOCAL_PATH)/recovery/ueventd.rc:recovery/root/ueventd.rc \
     $(LOCAL_PATH)/recovery/fstab.k3v2oem1:recovery/root/fstab.k3v2oem1 \
     $(LOCAL_PATH)/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 

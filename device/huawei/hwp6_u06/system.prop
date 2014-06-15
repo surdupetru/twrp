@@ -7,19 +7,8 @@ rild.libargs=-d /dev/ttyACM0
 rild.cfgfile=/system/etc/ril_xgold_radio.cfg
 audioril.lib=libhuawei-audio-ril.so
 ro.ril.ecclist=112,911,#911,*911
-
-ro.confg.hw_systemversion=P6-U06V100R001C17B506_SYSTEM
-ro.product.platform.pseudonym=1ARB9CV
+ro.telephony.ril_class=EPRJ9508RIL
 
 ro.zygote.disable_gl_preload=true
 
 ro.sf.lcd_density=320
-ro.config.modem_hsic=true
-af.resampler.quality=4
-ro.camera.sound.forced=1
-ro.config.hw_dolby=true
-keyguard.no_require_sim=true
-install.frobidden=false
-persist.sys.strictmode.visual=false
-ro.config.KeyPassToUser=true
-ro.config.fm_type=libbcmfm_if

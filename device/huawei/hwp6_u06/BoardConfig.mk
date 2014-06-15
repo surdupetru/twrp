@@ -1,12 +1,14 @@
 BOARD_VENDOR := Huawei
 
-USE_CAMERA_STUB := false
+USE_CAMERA_STUB := true
 
 # Audio
 TARGET_PROVIDES_LIBAUDIO := true
 BOARD_USES_GENERIC_AUDIO := false
 
-#CPU
+# inherit from the proprietary version
+#include vendor/huawei/hwp6_u06/BoardConfigVendor.mk
+
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := k3v2oem1
@@ -56,10 +58,12 @@ BOARD_WIFI_SKIP_CAPABILITIES     := true
 COMMON_GLOBAL_CFLAGS += -DUSES_TI_MAC80211
 endif
 
-
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_TI := true
+BOARD_WPAN_DEVICE := true
+#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/hwp6_u06/bluetooth
+
+#TARGET_PREBUILT_KERNEL := device/huawei/hwp6_u06/kernel
 
 # adb has root
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
@@ -70,7 +74,13 @@ ADDITIONAL_DEFAULT_PROPERTIES += persist.sys.usb.config=mass_storage
 BOARD_EGL_CFG := device/huawei/hwp6_u06/prebuilt/lib/egl/egl.cfg
 USE_OPENGL_RENDERER := true
 
+# Tuning
+#BOARD_HARDWARE_CLASS += device/huawei/hwp6_u06/cmhw/
+#BOARD_HAL_STATIC_LIBRARIES += libhealthd.hwp6_u06
 BOARD_SCREENRECORD_DEVICE_FORCE_AUDIO_MIC := true
+TARGET_GRALLOC_USES_ASHMEM := true
+BOARD_USES_SECURE_SERVICES := true
+BOARD_RIL_NO_CELLINFOLIST := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := vmalloc=384M k3v2_pmem=1 mmcparts=mmcblk0:p1(xloader),p3(nvme),p4(misc),p5(splash),p6(oeminfo),p7(reserved1),p8(reserved2),p9(splash2),p10(recovery2),p11(recovery),p12(boot),p13(modemimage),p14(modemnvm1),p15(modemnvm2),p16(system),p17(cache),p18(cust),p19(userdata);mmcblk1:p1(ext_sdcard)
@@ -84,12 +94,8 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5255462912
 
-
 # USB mass storage
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
-BOARD_MTP_DEVICE := "/dev/mtp"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
 BOARD_VOLD_MAX_PARTITIONS := 19
 
 TARGET_OTA_ASSERT_DEVICE := hwp6_u06,hwp6-u06,P6-U06
@@ -126,25 +132,7 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_FLASH_FROM_STORAGE := true
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_INTERNAL_STORAGE_PATH := "/data/share"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/k3_fb.1/leds/lcd_backlight0/brightness"
-
-BOARD_SEPOLICY_DIRS += \
-    device/huawei/hwp6_u06/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    bluetooth.te \
-    debuggered.te \
-    device.te \
-    dhcp.te \
-    domain.te \
-    file.te \
-    file_contexts \
-    healthd.te \
-    init_shell.te \
-    mediaserver.te \
-    netd.te \
-    rild.te \
-    system.te \
-    vold.te \
-    zygote.te

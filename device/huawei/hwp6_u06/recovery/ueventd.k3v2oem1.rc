@@ -1,7 +1,6 @@
 
 # for Sensor HAL
-#/dev/lsm303dlh_acc        0660   system     system
-#/dev/lsm303dlh_mag        0660   system     system
+
 /dev/akm8975_aot	  0660   system     system
 /dev/akm8975_dev	  0660   system     system
 
@@ -9,10 +8,11 @@
 
 /dev/ttyUSB1              0777   root       root
 /dev/ttyUSB0              0777   root       root
-/dev/ttyACM0              0777   root       root
-/dev/ttyACM1              0777   root       root
-/dev/ttyACM2              0777   root       root
-/dev/ttyACM3              0777   root       root
+
+/dev/ttyACM0              0770   root       radio
+/dev/ttyACM1              0770   root       radio
+/dev/ttyACM2              0770   root       radio
+/dev/ttyACM3              0770   root       radio
 
 #DTS2012010701178    huohua   2012/01/07  modify for dynamic gamma begin
 # for LCD_tuning
@@ -22,3 +22,83 @@
 /dev/hci_tty              0666   root       root
 /dev/uhid                 0666   root       root
 #DTS2013022207802       y00215327      2013/02/22      add end
+
+##Modem device#
+/dev/ttyUSB15            0660   radio       radio
+/dev/ttyUSB14            0660   radio       radio
+/dev/ttyUSB13            0660   radio       radio
+/dev/ttyUSB12            0660   radio       radio
+/dev/ttyUSB11            0660   radio       radio
+/dev/ttyUSB10            0660   radio       radio
+/dev/ttyUSB9             0660   radio       radio
+/dev/ttyUSB8             0660   radio       radio
+/dev/ttyUSB7             0660   radio       radio
+/dev/ttyUSB6             0660   radio       radio
+/dev/ttyUSB5             0660   radio       radio
+/dev/ttyUSB4             0660   radio       radio
+/dev/ttyUSB3             0660   radio       radio
+/dev/ttyUSB2             0660   system      system
+
+/dev/mux1                0660   root       radio
+/dev/mux2                0660   root       radio
+/dev/mux3                0660   root       radio
+/dev/mux4                0660   root       radio
+/dev/mux5                0660   root       radio
+/dev/mux6                0660   root       radio
+/dev/mux7                0660   root       system
+/dev/mux8                0660   media      media
+/dev/mux9                0660   radio      radio
+/dev/mux10               0660   radio      radio
+/dev/mux11               0660   radio      radio
+/dev/mux12               0660   radio      radio
+/dev/mux13               0660   radio      radio
+/dev/mux14               0660   radio      radio
+/dev/mux15               0660   radio      radio
+/dev/mux16               0660   radio      radio
+
+/dev/mux_balong1         0660   root       media
+/dev/mux_balong4         0640   system     system
+
+/dev/mux_mtk1            0660   root       radio
+/dev/mux_mtk2            0660   root       radio
+/dev/mux_mtk3            0660   root       radio
+/dev/mux_mtk4            0660   root       radio
+/dev/mux_mtk5            0660   root       root
+/dev/mux_mtk6            0660   root       root
+/dev/mux_mtk7            0660   root       system
+/dev/mux_mtk8            0660   root       radio
+/dev/mux_qsc1            0660   root       radio
+/dev/mux_qsc2            0660   root       radio
+/dev/mux_qsc3            0660   root       root
+/dev/mux_qsc4            0660   root       radio
+/dev/mux_qsc5            0660   root       root
+/dev/mux_qsc6            0660   root       system
+/dev/mux_qsc7            0660   root       root
+/dev/mux_qsc8            0660   root       root
+/dev/mux_qsc9            0660   root       media
+/dev/mux_qsc10           0660   root       root
+
+# logger should be world writable (for logging) but not readable
+/dev/log/events           0666   root       log
+/dev/smart/*              0662   system       system
+# the msm hw3d client device node is world writable/readable.
+
+# these should not be world writable
+/dev/diag                 0660   radio      radio
+
+# CDMA radio interface MUX
+/dev/ts0710mux0           0640   radio      radio
+/dev/ts0710mux2           0640   radio      radio
+/dev/ts0710mux3           0640   radio      radio
+/dev/ts0710mux4           0640   radio      radio
+/dev/ts0710mux5           0640   radio      radio
+/dev/ts0710mux6           0640   radio      radio
+/dev/ts0710mux7           0640   radio      radio
+/dev/ts0710mux8           0640   radio      radio
+/dev/ts0710mux9           0640   radio      radio
+/dev/ts0710mux1           0640   system     system
+/dev/ts0710mux15          0640   system     system
+/dev/ts0710mux16          0660   system     system
+
+#nfc
+/dev/pn544                0600   nfc        nfc
